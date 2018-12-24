@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
+
+	<!-- 佈署一個元件合約bean -->
+	<bean id="customers" class="com.tibame.domain.TibameCustomers"
+		scope="prototype"></bean>
+
+	<bean id="hello" class="com.tibame.domain.EngHelloWorld">
+
+	</bean>
+
+	<bean id="JPNhello" class="com.tibame.domain.JPNHelloWorld"
+		abstract="false" lazy-init="default" autowire="default">
+	</bean>
+
+	<!-- 部屬仲介元件 集合元件 -->
+	<bean id="empcollection" class="com.tibame.domain.TibameCollection"
+		abstract="false" lazy-init="default" autowire="default">
+	</bean>
+<!-- 	窗口物件 -->
+	<bean id="company" class="com.tibame.domain.TibameCompany"
+		abstract="false" lazy-init="default" autowire="default" scope="prototype">
+<!-- 	依賴注入DI -->
+	<property name="employees" ref="empcollection"></property>
+	</bean>
+</beans>
